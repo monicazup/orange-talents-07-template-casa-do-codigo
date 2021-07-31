@@ -1,5 +1,7 @@
 package br.com.zupacademy.OT7.monica.casadocodigo.Autor;
 
+import br.com.zupacademy.OT7.monica.casadocodigo.anotacao.CampoUnico;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -8,7 +10,7 @@ public class AutorRequest {
 
     @NotBlank
     String nome;
-    @NotBlank @Email
+    @NotBlank @Email @CampoUnico(entityClass = Autor.class, fieldName = "email")
     String email;
     @NotBlank @Size(max = 400)
     String descricao;
@@ -19,8 +21,6 @@ public class AutorRequest {
         this.email = email;
         this.descricao = descricao;
     }
-
-
 
     @Deprecated //Para uso do Spring
     public AutorRequest() {
