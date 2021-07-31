@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 @Constraint(validatedBy = CampoUnicoValidator.class)
 public @interface CampoUnico {
 
-    String message() default "Já cadastrado";
+    String message() default "já cadastrado";
 
     Class<?>[] groups() default {};
 
