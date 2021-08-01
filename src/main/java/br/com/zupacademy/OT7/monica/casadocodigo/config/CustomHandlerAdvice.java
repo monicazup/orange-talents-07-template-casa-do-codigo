@@ -30,4 +30,15 @@ public class CustomHandlerAdvice {
 
     }
 
+
+    @ExceptionHandler(ApiException.class)
+    public ResponseEntity<?> manipulador(ApiException exception) {
+        Collection<String> messages = new ArrayList<>();
+        messages.add(exception.getReason());
+
+        ErroPadronizado erroPadronizado = new ErroPadronizado(messages);
+        return ResponseEntity.status(exception.getHttpStatus()).body(erroPadronizado);
+
+    }
+
 }

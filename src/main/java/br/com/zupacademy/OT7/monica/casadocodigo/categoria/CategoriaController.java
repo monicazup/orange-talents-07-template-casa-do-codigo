@@ -15,7 +15,6 @@ import javax.validation.Valid;
 @RequestMapping("/categorias")
 public class CategoriaController {
 
-
     @Autowired
     EntityManager entityManager;
 
