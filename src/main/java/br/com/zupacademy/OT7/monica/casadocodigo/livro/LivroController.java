@@ -25,13 +25,16 @@ public class LivroController {
     private AutorRepository autorRepository;
 
     @Autowired
-    CategoriaRepository categoriaRepository;
+    private CategoriaRepository categoriaRepository;
 
     @PostMapping @Transactional
     public ResponseEntity<?> cadastrar(@RequestBody @Valid LivroRequest request) {
 
 //        if (categoria == null) throw new ApiException(HttpStatus.NOT_FOUND, "Categoria não encontrada.");
-        if (!autorRepository.existsById(request.getNomeAutor())) {
+        if (!categoriaRepository.existsByNome(request.getNomeCategoria())) {
+            throw new ApiException(HttpStatus.NOT_FOUND, "Categoria não encontrada");
+        }
+        if (!autorRepository.existsById(request.getIdAutor())) {
             throw new ApiException(HttpStatus.NOT_FOUND, "Autor não encontrado");
         }
 

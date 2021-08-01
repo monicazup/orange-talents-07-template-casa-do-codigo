@@ -5,14 +5,10 @@ import br.com.zupacademy.OT7.monica.casadocodigo.Autor.Autor;
 import br.com.zupacademy.OT7.monica.casadocodigo.Autor.AutorRepository;
 import br.com.zupacademy.OT7.monica.casadocodigo.anotacao.CampoUnico;
 import br.com.zupacademy.OT7.monica.casadocodigo.categoria.Categoria;
-import br.com.zupacademy.OT7.monica.casadocodigo.config.ApiException;
-import org.springframework.http.HttpStatus;
 
-import javax.persistence.EntityManager;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Optional;
 
 public class LivroRequest {
     @NotBlank
@@ -28,7 +24,7 @@ public class LivroRequest {
     @NotBlank
     private String nomeCategoria;
     @NotNull
-    private Long nomeAutor;
+    private Long idAutor;
     @NotNull
     @Min(100)
     private Integer numeroDePaginas;
@@ -48,7 +44,7 @@ public class LivroRequest {
                         String sumario,
                         String isbn,
                         String nomeCategoria,
-                        Long nomeAutor,
+                        Long idAutor,
                         Integer numeroDePaginas,
                         BigDecimal preco,
                         LocalDate dataDePublicacao) {
@@ -57,7 +53,7 @@ public class LivroRequest {
         this.sumario = sumario;
         this.isbn = isbn;
         this.nomeCategoria = nomeCategoria;
-        this.nomeAutor = nomeAutor;
+        this.idAutor = idAutor;
         this.numeroDePaginas = numeroDePaginas;
         this.preco = preco;
         this.dataDePublicacao = dataDePublicacao;
@@ -67,14 +63,14 @@ public class LivroRequest {
                         String resumo,
                         String isbn,
                         String nomeCategoria,
-                        Long nomeAutor,
+                        Long idAutor,
                         Integer numeroDePaginas,
                         BigDecimal preco) {
         this.titulo = titulo;
         this.resumo = resumo;
         this.isbn = isbn;
         this.nomeCategoria = nomeCategoria;
-        this.nomeAutor = nomeAutor;
+        this.idAutor = idAutor;
         this.numeroDePaginas = numeroDePaginas;
         this.preco = preco;
     }
@@ -82,11 +78,11 @@ public class LivroRequest {
     public Livro toEntity(AutorRepository autorRepository, CategoriaRepository categoriaRepository) {
 
 
-        Categoria categoria = categoriaRepository.findByNome(this.nomeCategoria).get();
+        Categoria categoria = categoriaRepository.findByNome(this.nomeCategoria);
 //        if (categoria == null) throw new ApiException(HttpStatus.NOT_FOUND, "Categoria não encontrada.");
 //
 //        if (autorRepository.existsById(nomeAutor)) throw new ApiException(HttpStatus.NOT_FOUND, "Autor não encontrado");
-        Autor autor = autorRepository.findById(nomeAutor).get();
+        Autor autor = autorRepository.findById(idAutor).get();
 
 
 
@@ -135,12 +131,12 @@ public class LivroRequest {
         this.nomeCategoria = nomeCategoria;
     }
 
-    public Long getNomeAutor() {
-        return nomeAutor;
+    public Long getIdAutor() {
+        return idAutor;
     }
 
-    public void setNomeAutor(Long nomeAutor) {
-        this.nomeAutor = nomeAutor;
+    public void setIdAutor(Long idAutor) {
+        this.idAutor = idAutor;
     }
 
     public Integer getNumeroDePaginas() {
