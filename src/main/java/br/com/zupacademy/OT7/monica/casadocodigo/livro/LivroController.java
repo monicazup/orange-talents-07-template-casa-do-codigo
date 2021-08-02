@@ -1,18 +1,21 @@
 package br.com.zupacademy.OT7.monica.casadocodigo.livro;
 
 import br.com.zupacademy.OT7.monica.casadocodigo.Autor.AutorRepository;
+import br.com.zupacademy.OT7.monica.casadocodigo.categoria.CategoriaRepository;
 import br.com.zupacademy.OT7.monica.casadocodigo.config.ApiException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/livros")
@@ -22,12 +25,15 @@ public class LivroController {
     private EntityManager entityManager;
 
     @Autowired
+    LivroRepository livroRepository;
+
+    @Autowired
     private AutorRepository autorRepository;
 
     @Autowired
     private CategoriaRepository categoriaRepository;
 
-    @PostMapping @Transactional
+    @PostMapping @Transactional @CacheEvict(value = "listaDeLivros", allEntries = true)
     public ResponseEntity<?> cadastrar(@RequestBody @Valid LivroRequest request) {
 
 //        if (categoria == null) throw new ApiException(HttpStatus.NOT_FOUND, "Categoria não encontrada.");
@@ -42,5 +48,14 @@ public class LivroController {
 
         entityManager.persist(livro);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/listar")
+    @Cacheable(value = "listaDeLivros")
+    public ResponseEntity<List<LivrosResponse>> listar(@RequestParam Integer pagina, @RequestParam Integer qnt) {
+        Pageable paginaRequest = PageRequest.of(pagina, qnt);
+        List<Livro> livros = livroRepository.findAll(paginaRequest).toList();
+
+        return ResponseEntity.ok().body(Livro.toListaResponse(livros));
     }
 }

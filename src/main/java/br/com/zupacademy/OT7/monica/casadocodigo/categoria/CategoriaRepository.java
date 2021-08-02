@@ -1,4 +1,4 @@
-package br.com.zupacademy.OT7.monica.casadocodigo.livro;
+package br.com.zupacademy.OT7.monica.casadocodigo.categoria;
 
 import br.com.zupacademy.OT7.monica.casadocodigo.categoria.Categoria;
 import org.springframework.data.jpa.repository.JpaRepository;

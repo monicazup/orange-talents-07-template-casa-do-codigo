@@ -8,6 +8,8 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Livro {
@@ -59,4 +61,17 @@ public class Livro {
         this.preco = preco;
         this.dataDePublicacao = dataDePublicacao;
     }
+
+    public LivrosResponse toResponse() {
+        return new LivrosResponse(this.id, this.titulo);
+    }
+
+    public static List<LivrosResponse> toListaResponse(List<Livro> livros){
+        List<LivrosResponse> listaDto = new ArrayList<>();
+        for (Livro livro: livros) {
+            listaDto.add(livro.toResponse());
+        }
+        return listaDto;
+    }
+
 }

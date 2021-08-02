@@ -5,6 +5,7 @@ import br.com.zupacademy.OT7.monica.casadocodigo.Autor.Autor;
 import br.com.zupacademy.OT7.monica.casadocodigo.Autor.AutorRepository;
 import br.com.zupacademy.OT7.monica.casadocodigo.anotacao.CampoUnico;
 import br.com.zupacademy.OT7.monica.casadocodigo.categoria.Categoria;
+import br.com.zupacademy.OT7.monica.casadocodigo.categoria.CategoriaRepository;
 
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
