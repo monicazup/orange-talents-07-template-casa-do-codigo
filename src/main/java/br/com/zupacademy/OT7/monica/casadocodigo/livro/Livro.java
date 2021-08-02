@@ -1,7 +1,6 @@
 package br.com.zupacademy.OT7.monica.casadocodigo.livro;
 
-import br.com.zupacademy.OT7.monica.casadocodigo.Autor.Autor;
-import br.com.zupacademy.OT7.monica.casadocodigo.anotacao.CampoUnico;
+import br.com.zupacademy.OT7.monica.casadocodigo.autor.Autor;
 import br.com.zupacademy.OT7.monica.casadocodigo.categoria.Categoria;
 
 import javax.persistence.*;
@@ -13,11 +12,13 @@ import java.util.List;
 
 @Entity
 public class Livro {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id; 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
     @NotBlank
     private String titulo;
-    @NotBlank @Size(max = 500)
+    @NotBlank
+    @Size(max = 500)
     private String resumo;
     @Lob
     @Basic(fetch = FetchType.LAZY) //a anotação @Basic(fetch=LAZY) serve que
@@ -32,14 +33,16 @@ public class Livro {
     @NotNull
     @ManyToOne(cascade = CascadeType.MERGE)
     private Autor autor;
-    @NotNull @Min(100)
+    @NotNull
+    @Min(100)
     private Integer numeroDePaginas;
     private BigDecimal preco;
     @Future
     private LocalDate dataDePublicacao;
 
     @Deprecated
-    public Livro(){}
+    public Livro() {
+    }
 
     public Livro(String titulo,
                  String resumo,
@@ -66,12 +69,51 @@ public class Livro {
         return new LivrosResponse(this.id, this.titulo);
     }
 
-    public static List<LivrosResponse> toListaResponse(List<Livro> livros){
+    public static List<LivrosResponse> toListaResponse(List<Livro> livros) {
         List<LivrosResponse> listaDto = new ArrayList<>();
-        for (Livro livro: livros) {
+        for (Livro livro : livros) {
             listaDto.add(livro.toResponse());
         }
         return listaDto;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public String getResumo() {
+        return resumo;
+    }
+
+    public String getSumario() {
+        return sumario;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public Autor getAutor() {
+        return autor;
+    }
+
+    public Integer getNumeroDePaginas() {
+        return numeroDePaginas;
+    }
+
+    public BigDecimal getPreco() {
+        return preco;
+    }
+
+    public LocalDate getDataDePublicacao() {
+        return dataDePublicacao;
+    }
 }

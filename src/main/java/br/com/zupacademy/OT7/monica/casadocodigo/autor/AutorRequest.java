@@ -1,4 +1,4 @@
-package br.com.zupacademy.OT7.monica.casadocodigo.Autor;
+package br.com.zupacademy.OT7.monica.casadocodigo.autor;
 
 import br.com.zupacademy.OT7.monica.casadocodigo.anotacao.CampoUnico;
 

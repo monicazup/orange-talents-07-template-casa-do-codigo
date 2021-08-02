@@ -1,4 +1,4 @@
-package br.com.zupacademy.OT7.monica.casadocodigo.Autor;
+package br.com.zupacademy.OT7.monica.casadocodigo.autor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,5 +33,9 @@ public class Autor {
 
     @Deprecated //Para uso do Spring
     public Autor() {
+    }
+
+    public String getNome() {
+        return this.nome;
     }
 }

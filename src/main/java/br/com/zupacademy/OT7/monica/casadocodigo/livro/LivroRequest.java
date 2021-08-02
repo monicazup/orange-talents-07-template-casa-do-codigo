@@ -1,11 +1,12 @@
 package br.com.zupacademy.OT7.monica.casadocodigo.livro;
 
 
-import br.com.zupacademy.OT7.monica.casadocodigo.Autor.Autor;
-import br.com.zupacademy.OT7.monica.casadocodigo.Autor.AutorRepository;
+import br.com.zupacademy.OT7.monica.casadocodigo.autor.Autor;
+import br.com.zupacademy.OT7.monica.casadocodigo.autor.AutorRepository;
 import br.com.zupacademy.OT7.monica.casadocodigo.anotacao.CampoUnico;
 import br.com.zupacademy.OT7.monica.casadocodigo.categoria.Categoria;
 import br.com.zupacademy.OT7.monica.casadocodigo.categoria.CategoriaRepository;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
@@ -32,7 +33,7 @@ public class LivroRequest {
     @NotNull
     @Min(20)
     private BigDecimal preco;
-    @Future
+    @Future @JsonFormat(pattern = "dd/MM/yyyy", shape =  JsonFormat.Shape.STRING)
     private LocalDate dataDePublicacao;
 
     @Deprecated

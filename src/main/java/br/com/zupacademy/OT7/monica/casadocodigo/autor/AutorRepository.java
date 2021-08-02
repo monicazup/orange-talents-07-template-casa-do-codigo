@@ -1,4 +1,4 @@
-package br.com.zupacademy.OT7.monica.casadocodigo.Autor;
+package br.com.zupacademy.OT7.monica.casadocodigo.autor;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

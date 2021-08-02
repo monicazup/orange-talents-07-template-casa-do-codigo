@@ -30,7 +30,6 @@ public class CustomHandlerAdvice {
 
     }
 
-
     @ExceptionHandler(ApiException.class)
     public ResponseEntity<?> manipulador(ApiException exception) {
         Collection<String> messages = new ArrayList<>();

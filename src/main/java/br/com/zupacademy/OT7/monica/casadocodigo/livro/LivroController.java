@@ -1,6 +1,6 @@
 package br.com.zupacademy.OT7.monica.casadocodigo.livro;
 
-import br.com.zupacademy.OT7.monica.casadocodigo.Autor.AutorRepository;
+import br.com.zupacademy.OT7.monica.casadocodigo.autor.AutorRepository;
 import br.com.zupacademy.OT7.monica.casadocodigo.categoria.CategoriaRepository;
 import br.com.zupacademy.OT7.monica.casadocodigo.config.ApiException;
 import org.springframework.beans.factory.annotation.Autowired;
