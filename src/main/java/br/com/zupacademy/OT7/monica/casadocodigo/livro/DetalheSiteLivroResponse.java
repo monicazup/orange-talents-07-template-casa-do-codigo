@@ -20,7 +20,7 @@ public class DetalheSiteLivroResponse {
     private LocalDate dataDePublicacao;
 
     public DetalheSiteLivroResponse(Livro livro) {
-        this.id = livro.id;
+        this.id = livro.getId();
         this.titulo = livro.getTitulo();
         this.resumo = livro.getResumo();
         this.sumario = livro.getSumario();

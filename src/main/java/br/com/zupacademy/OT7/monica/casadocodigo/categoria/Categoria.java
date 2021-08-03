@@ -10,10 +10,10 @@ import javax.validation.constraints.NotBlank;
 public class Categoria {
 
     @Id @GeneratedValue
-    Long id;
+    private Long id;
     @NotBlank
     @Column(unique = true)
-    String nome;
+    private String nome;
 
     @Deprecated
     public Categoria() {}

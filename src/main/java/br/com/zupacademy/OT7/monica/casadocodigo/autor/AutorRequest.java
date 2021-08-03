@@ -9,11 +9,11 @@ import javax.validation.constraints.Size;
 public class AutorRequest {
 
     @NotBlank
-    String nome;
+    private String nome;
     @NotBlank @Email @CampoUnico(entityClass = Autor.class, fieldName = "email")
-    String email;
+    private String email;
     @NotBlank @Size(max = 400)
-    String descricao;
+    private String descricao;
 
 
     public AutorRequest(String nome, String email, String descricao) {

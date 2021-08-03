@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 public class CategoriaRequest {
     @NotNull(message = "não pode ser nulo") @NotBlank(message = "não pode estar em branco")
     @CampoUnico(entityClass = Categoria.class, fieldName = "nome", message = "não pode ser repetido")
-    String nome;
+    private String nome;
 
     @Deprecated
     public CategoriaRequest(){}
